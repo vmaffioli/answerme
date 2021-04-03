@@ -1,14 +1,14 @@
 {
-  "name": "simple-answer-bot",
+  "name": "get-answer",
   "version": "1.0.0",
-  "description": "A package to allows simple javascript bots to aswers questions.",
+  "description": "A package to allows simple javascript bots to answers questions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vmaffioli/simple-answer-bot.git"
+    "url": "git+https://github.com/vmaffioli/get-answers.git"
   },
   "keywords": [
     "bot",
@@ -21,7 +21,7 @@
   "author": "vmaffioli <vinimaffioli@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vmaffioli/simple-answer-bot/issues"
+    "url": "https://github.com/vmaffioli/get-answers/issues"
   },
-  "homepage": "https://github.com/vmaffioli/simple-answer-bot#readme"
+  "homepage": "https://github.com/vmaffioli/get-answers/#readme"
 }
