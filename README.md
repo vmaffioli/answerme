@@ -115,54 +115,7 @@ console.log(simpleAnswer.get("Question here", answers, words);
 //Returns an array of strings min:1/max:any
 ```
 
-
-
-```
-
-
-
-
-
-
-```
-
-##### In code:
-
-```javascript
-const defaultAnswers = [
-    { 
-        "id": "sys",
-        "answers": [ 
-            "nao conheço essa resposta =(",
-            "estou em duvida entre:",
-            "eu sei responder as seguintes perguntas:"
-        ]
-
-    },
-    {
-        "id": "minhaIdade",
-        "desc": "Sobre minha idade",
-        "keys": [
-            [
-                "quantos",
-                "voce",
-                "qual",
-                "tem",
-            ],
-            [
-                "anos",
-                "idade"
-            ]
-        ],
-        "questions": [
-            "quantos anos voce tem?",
-            "qual sua idade?"
-        ],
-        "answers": [
-            "Minha idade é XX."
-        ]
-    },
-```
+---
 
 .
 .
