@@ -1,17 +1,14 @@
-
-const defaultAnswers = [
-    { 
-        "id": "sys",
-        "answers": [ 
-            "resposta não encontrada",
-            "estou em duvida entre:",
-            "minhas respostas:"
-        ]
-
+[
+    {
+        "id": "",
+        "desc": "",
+        "keys": "",
+        "questions": "",
+        "answers": ""
     },
     {
         "id": "memorizedQuestions",
-        "desc": "%%all%%",
+        "desc": "Perguntas ou assuntos que eu sei responder",
         "keys": [
             [
                 "voce",
@@ -964,9 +961,4 @@ const defaultAnswers = [
             "Minhas principais atividades eram gerar massa de dados e criação de procedures mySQL e back end envolvendo retornos em tela (.pdf)"
         ]
     }
-
-  
 ]
-
-
-export default defaultAnswers;

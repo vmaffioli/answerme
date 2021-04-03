@@ -1,17 +1,15 @@
 
-import analyzeInput from './core/brain.js';
-import ActionProvider from './ActionProvider.js';
+const analyzeInput = require('./core/brain.js');
+const actionProvider = require('./ActionProvider.js');
 
 // MessageParser starter code
-const actionProvider = new ActionProvider()
 
-async function MessageParse(message, memorizedAnswers) {
+exports.MessageParser = function(message, memorizedAnswers) {
   const msg = message.replace("?", "").toLowerCase();
 
-   return actionProvider.sendAnswer(analyzeInput.reply(msg, memorizedAnswers), memorizedAnswers)
+  return actionProvider.sendAnswer(analyzeInput.reply(msg, memorizedAnswers), memorizedAnswers)
 
 };
 
 
 
-export default MessageParse;

@@ -1,16 +1,20 @@
-import MessageParser from './MessageParser.js';
-import defaultAnswers from './Core/defaultAnswers.js';
+const parse = require('./MessageParser.js');
+const defaultAnswers = require('./Core/defaultAnswers.json');
 
-export default function simpleAnswerBot(userInput, memorizedAnswersFromUser){
-
+exports.simpleAnswerBot = function(userInput, memorizedAnswersFromUser){
+    let result;
+    
     if((memorizedAnswersFromUser === undefined)) {
-        return MessageParser(userInput,defaultAnswers);
+        result = parse.MessageParser(userInput,defaultAnswers);
     } else if(memorizedAnswersFromUser.length === 0) {
-        return MessageParser(userInput,defaultAnswers);
+        result = parse.MessageParser(userInput,defaultAnswers);
     } else {
-        return MessageParser(userInput,memorizedAnswersFromUser);
+        result = parse.MessageParser(userInput,memorizedAnswersFromUser);
     }
+
+    return result
 
 };
 
 
+console.log(this.simpleAnswerBot("onde vc mora?"))

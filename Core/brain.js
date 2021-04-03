@@ -1,5 +1,5 @@
-import sameWords from "./sameWords.js";
-import defaultAnswers from "./defaultAnswers.js";
+const sameWords = require("./sameWords.json");
+const defaultAnswers = require("./defaultAnswers.json");
 
 
 
@@ -8,7 +8,7 @@ function preventStutter(word) { //pra evitar que os proximos resultados nao saim
 }
 
 
-function normalizeCustom(str){
+function normalizeCustom(str) {
     let mapaAcentosHex = {
         a: /[\xE0-\xE6]/g,
         e: /[\xE8-\xEB]/g,
@@ -33,7 +33,7 @@ function padronizeWords(userInput) {     // girias ou variacoes
         userInput = normalizeCustom(preventStutter(userInput).replace(preventStutter(sameWords_in[i]), preventStutter(sameWords_out[i])))
     } //converte palavras com significados iguais aos memorizados
 
- 
+
     return userInput //entrega com as palavras com significados iguais convertidas para palavra padrao
 }
 
@@ -179,7 +179,6 @@ function analyzeQuestion(hmmIRemember, userInput, memorizedAnswers) { //dividido
     } else {
         finalAnalisys = partialAnalysis[0][0]
     }
-
     return finalAnalisys
 }
 
@@ -234,21 +233,21 @@ function getAnswersById(id, memorizedAnswers) { // retorna respostas do json pel
     let result = []
     let resultCT = 0
     if (Array.isArray(id)) { // em caso de empate ele recebe mais de 1 lista, entao ele processa a resposta para empate aqui
-        for (let i = 0; i < id.length-1; i++) {
+        for (let i = 0; i < id.length - 1; i++) {
             const eachId = id[i]
             for (let ii = 0; ii < memorizedAnswers.length; ii++) {
                 const memorizedId = memorizedAnswers[ii].id
                 if (result[0] === undefined) {
-                    if(memorizedAnswers[0].id === "sys") {
+                    if (memorizedAnswers[0].id === "sys") {
                         result.push(memorizedAnswers[0].answers[1])
                     } else {
                         result.push(defaultAnswers[0].answers[1])
                     }
-                } else if ((result[0] !== undefined) && (memorizedId === eachId)){
-                    if(resultCT === 0){
+                } else if ((result[0] !== undefined) && (memorizedId === eachId)) {
+                    if (resultCT === 0) {
                         result.push(memorizedAnswers[ii].desc)
                     } else {
-                        if(result[resultCT-1] !== memorizedAnswers[ii].desc){
+                        if (result[resultCT - 1] !== memorizedAnswers[ii].desc) {
                             result.push(memorizedAnswers[ii].desc)
                         }
                     }
@@ -258,19 +257,19 @@ function getAnswersById(id, memorizedAnswers) { // retorna respostas do json pel
 
         }
     } else if (id === "%%dontknow%%") { // se nao reconhecer nenhuma chave, nada!
-        
-        if(memorizedAnswers[0].id === "sys"){
-            if(memorizedAnswers[0].answers[0] === undefined) {
+
+        if (memorizedAnswers[0].id === "sys") {
+            if (memorizedAnswers[0].answers[0] === undefined) {
                 result.push(memorizedAnswers[0].answers[0])
-            } else if(memorizedAnswers[0].answers[0] === "") {
+            } else if (memorizedAnswers[0].answers[0] === "") {
                 result.push(memorizedAnswers[0].answers[0])
             } else {
                 result.push(memorizedAnswers[0].answers[0])
             }
         } else {
-            if(memorizedAnswers[0].answers[0] === undefined) {
+            if (memorizedAnswers[0].answers[0] === undefined) {
                 result.push(defaultAnswers[0].answers[0])
-            } else if(memorizedAnswers[0].answers[0] === "") {
+            } else if (memorizedAnswers[0].answers[0] === "") {
                 result.push(defaultAnswers[0].answers[0])
             } else {
                 result.push(memorizedAnswers[0].answers[0])
@@ -299,67 +298,64 @@ function compareWords(userInput, memorizedWord) { //compara palavras - so string
     return result
 }
 
-const analyzeInput = {
-    
-    reply: (userInput, memorizedAnswers) => {
-        let recognizingSomething = []
-        userInput = padronizeWords(userInput) // aplica padrao para palavras com msm significado
-        let rememberCt = 0
-        rememberQuestions(memorizedAnswers).forEach(memorizedQuestion => { //verifica se cada key existe no userInput
-            let keys = memorizedQuestion.keys
-            let passedCounter = 0
-            let twoFactory_1 = false //validar as 2 keys
-            let twoFactory_2 = false
+exports.reply = (userInput, memorizedAnswers) => {
+    let recognizingSomething = []
+    userInput = padronizeWords(userInput) // aplica padrao para palavras com msm significado
+    let rememberCt = 0
+    rememberQuestions(memorizedAnswers).forEach(memorizedQuestion => { //verifica se cada key existe no userInput
+        let keys = memorizedQuestion.keys
+        let passedCounter = 0
+        let twoFactory_1 = false //validar as 2 keys
+        let twoFactory_2 = false
 
 
-            if (Array.isArray(keys)) { // precisa receber uma lista - é regra
-                for (let i = 0; i < keys.length; i++) { //compara palavras vindas do usuarios com as keys
-                    if (Array.isArray(keys[i])) {
-                        let checkKeys = keys[i]
-                        for (let ii = 0; ii < checkKeys.length; ii++) {
-                            if ((passedCounter === 0) && (compareWords(userInput, checkKeys[ii]))) {
-                                twoFactory_2 = true
-                            } else if ((passedCounter === 1) && (compareWords(userInput, checkKeys[ii]))) {
-                                twoFactory_1 = true
-                            } else if (passedCounter > 1) {
-                                console.log("simple-answer-bot: Hey, estão me enviando chave a mais para analisar!! max: 2")
-                            }
-                        }
-                    } else {
-                        if ((passedCounter === 0) && (compareWords(userInput, keys[i]))) {
+        if (Array.isArray(keys)) { // precisa receber uma lista - é regra
+            for (let i = 0; i < keys.length; i++) { //compara palavras vindas do usuarios com as keys
+                if (Array.isArray(keys[i])) {
+                    let checkKeys = keys[i]
+                    for (let ii = 0; ii < checkKeys.length; ii++) {
+                        if ((passedCounter === 0) && (compareWords(userInput, checkKeys[ii]))) {
                             twoFactory_2 = true
-                        } else if ((passedCounter === 1) && (compareWords(userInput, keys[i]))) {
+                        } else if ((passedCounter === 1) && (compareWords(userInput, checkKeys[ii]))) {
                             twoFactory_1 = true
-                        } else if (passedCounter > 1) { //precisa vir uma lista de keys com 2 posicoes - a regra é clara!
-                            console.log("simple-answer-bot: Receiving an invalid keys list!")
+                        } else if (passedCounter > 1) {
+                            console.log("simple-answer-bot: Hey, estão me enviando chave a mais para analisar!! max: 2")
                         }
                     }
-
-                    if ((twoFactory_1) && (twoFactory_2)) {
-                        recognizingSomething.push(memorizedQuestion.id)
+                } else {
+                    if ((passedCounter === 0) && (compareWords(userInput, keys[i]))) {
+                        twoFactory_2 = true
+                    } else if ((passedCounter === 1) && (compareWords(userInput, keys[i]))) {
+                        twoFactory_1 = true
+                    } else if (passedCounter > 1) { //precisa vir uma lista de keys com 2 posicoes - a regra é clara!
+                        console.log("simple-answer-bot: Receiving an invalid keys list!")
                     }
-                    passedCounter++
                 }
-            } else {//precisa vir uma lista de keys com 2 posicoes  - a regra é clara!
-                if(rememberCt>0){
+
+                if ((twoFactory_1) && (twoFactory_2)) {
+                    recognizingSomething.push(memorizedQuestion.id)
+                }
+                passedCounter++
+            }
+        } else {//precisa vir uma lista de keys com 2 posicoes  - a regra é clara!
+            if (rememberCt > 0) {
                 console.log("simple-answer-bot: Receiving an invalid keys list!")
                 //recognizingSomething.push(memorizedQuestion.id)
-                }
-
             }
-            rememberCt++
-        })
-        const myBrainIsArching = thinkingAboutKeys(analyzeKeys(recognizingSomething))//analisa as keys identificadas e processa qual delas foi a mais acessada 
-        //const keyCompareCache = myBrainIsArching[1]//para futuras atualizacoes
-        const hmmIRemember = myBrainIsArching[0]
+
+        }
+        rememberCt++
+    })
+    const myBrainIsArching = thinkingAboutKeys(analyzeKeys(recognizingSomething))//analisa as keys identificadas e processa qual delas foi a mais acessada 
+    //const keyCompareCache = myBrainIsArching[1]//para futuras atualizacoes
+    const hmmIRemember = myBrainIsArching[0]
 
 
 
 
-        //envia a resposta ja validada pelo analyzeQuestion
-        return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
-    }
-
+    //envia a resposta ja validada pelo analyzeQuestion
+    return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
 }
 
-export default analyzeInput;
+
+
