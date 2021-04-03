@@ -1,0 +1,31 @@
+{
+  "name": "simple-answer-bot",
+  "version": "1.0.0",
+  "description": "A package to allows simple javascript bots to aswers questions.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmaffioli/simple-answer-bot.git"
+  },
+  "keywords": [
+    "bot",
+    "chatbot",
+    "npm",
+    "aswers",
+    "questions",
+    "chat-bot"
+  ],
+  "author": "vmaffioli <vinimaffioli@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vmaffioli/simple-answer-bot/issues"
+  },
+  "homepage": "https://github.com/vmaffioli/simple-answer-bot#readme",
+  "dependencies": {
+    "isa-know-name": "^1.0.7"
+  }
+}
