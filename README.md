@@ -7,85 +7,121 @@ A package to allow simple javascript bots answers questions.
 
 Simple-answer-bot was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
 
-The main objective of this package is receive a question as String, compare with the bot memorized answers and return the answer as String.
-
-I build this script using ES6 Modules, so its is necessary to runs on a .mjs or add type='module' in your package.json
+The main objective of this package is receive a question as a String, compare with  memorized answers and return the answer as String.
 
 ---
 
-### Usage
-
+## Usage:
+Install the NPM package:
 ```
 npm install simple-answer-bot
 ```
-
-##### In code:
-
-``` javascript
-import answer from 'simple-answer-bot';
-
-const question = "Your question as a String"
-const myAnswers = "Your custom answers js object"
-
-const return = answer(question, myAnswers); // <- Returns an array of strings
+---
+#### Custom Answers:
+You'll need a .json file to save your custom answers:
+This .json must start with an object { id:"sys", "answers": [] } and his "answers" can receive three Strings to customize default system answers:
+(to maintain default values just keep the a empty list in "answers")
+```javascript
+{
+    "id": "sys", //Prefix used to allow the scripts read this file
+    "answers": [
+    // 1° 'Answer not found' message 
+        "answer not found", 
+    // 2° 'In doubt between 2 or more items' message followed by an output list
+        "to many answers, check recognized questions:",
+    // 3° 'Known questions message' followed by an output list
+        "my answers:"
+    ]
+}
 ```
-
-##### Example:
-
-``` javascript
-import answer from 'simple-answer-bot';
-import customAnswers from './customAnswers.js';
-
-const return = answer("o que você sabe responder?", customAnswers); 
-```
-
-### Custom Answer Object
-
-To storage your answers you must create an object in a .js file (by now lets call it customAnswers.js)
-
-
-##### Custom Answer Object Preset
  
-##### In code:
+#### IMPORTANT:
+- This .json file need to start with the object { id:"sys", "answers": [] }
+
+- If the .json imported don't starts with the object { id:"sys", "answers": [] }, the scripts will use a default json with default answers
+
+
+---
+ 
+#### Custom Words Replacements:
+To help the script better distinguish the words entered by the user, you may replace words with the same meaning using a second .json file, containg a list with this three itens below:
+
+```javascript
+[ 
+    "sys", //Prefix used to allow the scripts read this file
+    [ ], // List containing words to be replaced
+    [ ] // List containg words to replace
+]
+```
+- #### .json structure:
 ```javascript
 
-const customAnswers = [
-    { // the first pos of this array must have an id named "sys" to load configs
-        "id": "sys", 
-        "answers": [  // here you can set default system answers
-            "resposta não encontrada", //pos[0] not found msg
-            "estou em duvida entre:", //pos[1] returns more than one answer msg
-            "minhas respostas:" //pos[2] msg before  bot list every answers him knows when asked
-        ]
-
-    },
-    {
+[ 
+    [
+    "id": "sys", 
+    "answers": []
+    ],
+    []
         "id": "", // a unique string reference for the answer
         "desc": "", // a string to describes the answer's question
         "keys": [  // keys useds to compare input and memorized itens
             [
-                "",
-                "",
-                ""
-            ], //use how many keys you needs
+                "your" // you can add any keys on each keys lists
+            ], 
             [
-                "",
-                "",
-                ""
+                "name" // you can add any keys on each keys lists
             ]
         ],
-        "questions": [ //presets useds for compare on draw events between answers
+        "questions": [ //presets used for compare when draw events between answers happens
             "questionPreset001", //use how many questions presets you want
             "questionPreset002"
-
         ],
         "answers": [ // will be our return, answers to be printed one by one.
-            "answer001",  //use how many answers you want
+            "answer001",  //split answer msg or return a list with one position
             "answer002"
         ]
-    }
-    
-export default customAnswers;
+    ]
+]
+```
+#### IMPORTANT:
+- This .json file need to be a list with three itens. Example: [ "sys", [], [] ]
+
+- The items on the first list will be replaced by the itens on second list, be sure to keep the positions align. Example: [ "sys", ["lightblue", "lightgray"], ["blue", "gray"] ]
+ ~input: ["lightblue", "lightgray"]
+~output: ["blue", "gray"]
+
+---
+### Code Examples:
+
+- #### ES6 Modules
+ 
+ 
+``` javascript
+import simpleAnswer from 'simple-answer-bot';
+import answers from 'answersjson'; 
+import words from 'words.json';  //optional
+
+console.log(simpleAnswer.get("Question here", answers, words);
+//Returns an array of strings min:1/max:any
+```
+
+- #### Vanilla
+```javascript
+const simpleAnswer = require('simple-answer-bot');
+const answers = "answers.json";
+const words = "words.json";  //optional
+
+console.log(simpleAnswer.get("Question here", answers, words); 
+//Returns an array of strings min:1/max:any
+```
+
+
+
+```
+
+
+
+
 
 
 ```
@@ -128,3 +164,8 @@ const defaultAnswers = [
     },
 ```
 
+.
+.
+.
+.
+New updates coming soon!

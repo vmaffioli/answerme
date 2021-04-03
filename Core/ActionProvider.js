@@ -1,4 +1,5 @@
-const defaultAnswers = require('./Core/defaultAnswers.json');
+const defaultAnswers = require('./../default/defaultAnswers.json');
+
 
 
 exports.sendAnswer = (answersList, memorizedAnswers) => {

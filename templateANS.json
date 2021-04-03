@@ -1,0 +1,35 @@
+[
+    {
+        "id": "sys",
+        "answers": [
+            "",
+            "oi",
+            ""
+        ]
+    },
+    {
+        "id": "nm001",
+        "desc": "Meu nome",
+        "keys": [
+            [
+                "voce",
+                "seu",
+                "qual",
+                "como"
+            ],
+            [
+                "nome",
+                "chama"
+            ]
+        ],
+        "questions": [
+            "qual seu nome",
+            "como voce se chama",
+            "qual e o seu nome"
+        ],
+        "answers": [
+            "Eu me chamo",
+            "simple-answer-bot"
+        ]
+    }
+]

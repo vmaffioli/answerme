@@ -1,5 +1,4 @@
-const sameWords = require("./sameWords.json");
-const defaultAnswers = require("./defaultAnswers.json");
+const defaultAnswers = require("./../default/defaultAnswers.json");
 
 
 
@@ -24,10 +23,11 @@ function normalizeCustom(str) {
     }
     return str
 }
-function padronizeWords(userInput) {     // girias ou variacoes 
+function padronizeWords(userInput,sameWords) {     // girias ou variacoes 
     userInput = userInput.toLowerCase()
-    let sameWords_in = sameWords[0]
-    let sameWords_out = sameWords[1]
+
+    let sameWords_in = sameWords[1]
+    let sameWords_out = sameWords[2]
 
     for (let i = 0; i < sameWords_in.length; i++) {
         userInput = normalizeCustom(preventStutter(userInput).replace(preventStutter(sameWords_in[i]), preventStutter(sameWords_out[i])))
@@ -113,9 +113,9 @@ function thinkingAboutKeys(array) { // filtra chaves reconhecidas pelo maior con
     return [moreLikely, memoryCache]
 }
 
-function analyzeQuestion(hmmIRemember, userInput, memorizedAnswers) { //dividido em parcial e final/ compara as palavras do input com as questoes memorizadas
+function analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, sameWords) { //dividido em parcial e final/ compara as palavras do input com as questoes memorizadas
     let partialAnalysis = [] //analise parcial
-    userInput = padronizeWords(userInput.toLowerCase())
+    userInput = padronizeWords(userInput.toLowerCase(), sameWords)
     //console.log(userInput)
     if (hmmIRemember[0] === "%%dontknow%%") { // converte o nao reconhecido em nao lembrado rs
         partialAnalysis.push(hmmIRemember)
@@ -298,9 +298,11 @@ function compareWords(userInput, memorizedWord) { //compara palavras - so string
     return result
 }
 
-exports.reply = (userInput, memorizedAnswers) => {
+exports.reply = (msg, memorizedAnswers, sameWords) => {
+    let userInput = msg.replace("?", "").toLowerCase();
     let recognizingSomething = []
-    userInput = padronizeWords(userInput) // aplica padrao para palavras com msm significado
+
+    userInput = padronizeWords(userInput, sameWords) // aplica padrao para palavras com msm significado
     let rememberCt = 0
     rememberQuestions(memorizedAnswers).forEach(memorizedQuestion => { //verifica se cada key existe no userInput
         let keys = memorizedQuestion.keys
@@ -351,10 +353,8 @@ exports.reply = (userInput, memorizedAnswers) => {
     const hmmIRemember = myBrainIsArching[0]
 
 
-
-
     //envia a resposta ja validada pelo analyzeQuestion
-    return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
+    return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, sameWords), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
 }
 
 
