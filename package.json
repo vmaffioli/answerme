@@ -24,8 +24,5 @@
   "bugs": {
     "url": "https://github.com/vmaffioli/simple-answer-bot/issues"
   },
-  "homepage": "https://github.com/vmaffioli/simple-answer-bot#readme",
-  "dependencies": {
-    "isa-know-name": "^1.0.7"
-  }
+  "homepage": "https://github.com/vmaffioli/simple-answer-bot#readme"
 }
