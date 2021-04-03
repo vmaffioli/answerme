@@ -1,11 +1,11 @@
-# simple-answer-bot
+# get-answers
 A package to allow simple javascript bots answers questions.
 
 ---
 
 ## Readme
 
-Simple-answer-bot was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
+get-answers was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
 
 The main objective of this package is receive a question as a String, compare with  memorized answers and return the answer as String.
 
@@ -14,7 +14,7 @@ The main objective of this package is receive a question as a String, compare wi
 ## Usage:
 Install the NPM package:
 ```
-npm install simple-answer-bot
+npm install get-answers
 ```
 ---
 #### Custom Answers:
@@ -97,21 +97,21 @@ To help the script better distinguish the words entered by the user, you may rep
  
  
 ``` javascript
-import simpleAnswer from 'simple-answer-bot';
+import getAnswers from 'get-answers';
 import answers from 'answersjson'; 
 import words from 'words.json';  //optional
 
-console.log(simpleAnswer.get("Question here", answers, words);
+console.log(getAnswers.get("Question here", answers, words);
 //Returns an array of strings min:1/max:any
 ```
 
 - #### Vanilla
 ```javascript
-const simpleAnswer = require('simple-answer-bot');
+const getAnswers = require('get-answers');
 const answers = "answers.json";
 const words = "words.json";  //optional
 
-console.log(simpleAnswer.get("Question here", answers, words); 
+console.log(getAnswers.get("Question here", answers, words); 
 //Returns an array of strings min:1/max:any
 ```
 
