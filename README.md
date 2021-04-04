@@ -44,13 +44,13 @@ This .json must start with an object { id:"sys", "answer": [] } and his "answer"
 ---
  
 #### Custom Words Replacements:
-To help the script better distinguish the words entered by the user, you may replace words with the same meaning using a second .json file, containg a list with this three itens below:
+To help the script better distinguish the words entered by the user, you may replace words with the same meaning using a second .json file, containing a list with this three items below:
 
 ```javascript
 [ 
     "sys", //Prefix used to allow the scripts read this file
     [ ], // List containing words to be replaced
-    [ ] // List containg words to replace
+    [ ] // List containing words to replace
 ]
 ```
 - #### .json structure:
@@ -64,7 +64,7 @@ To help the script better distinguish the words entered by the user, you may rep
     []
         "id": "", // a unique string reference for the answer
         "desc": "", // a string to describes the answer's question
-        "keys": [  // keys useds to compare input and memorized itens
+        "keys": [  // keys useds to compare input and memorized items
             [
                 "your" // you can add any keys on each keys lists
             ], 
@@ -84,9 +84,9 @@ To help the script better distinguish the words entered by the user, you may rep
 ]
 ```
 #### IMPORTANT:
-- This .json file need to be a list with three itens. Example: [ "sys", [], [] ]
+- This .json file need to be a list with three items. Example: [ "sys", [], [] ]
 
-- The items on the first list will be replaced by the itens on second list, be sure to keep the positions align. Example:  [ "sys", ["lightblue", "lightgray"], ["blue", "gray"] ] 
+- The items on the first list will be replaced by the items on second list, be sure to keep the positions align. Example:  [ "sys", ["lightblue", "lightgray"], ["blue", "gray"] ] 
  ~input: ["lightblue", "lightgray"]
 ~output: ["blue", "gray"]
 
