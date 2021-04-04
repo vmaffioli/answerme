@@ -1,44 +1,44 @@
-# get-answers
-A package to allow simple javascript bots answers questions.
+# get-answer
+A package to allow simple javascript bots answer questions.
 
 ---
 
 ## Readme
 
-get-answers was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
+get-answer was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
 
-The main objective of this package is receive a question as a String, compare with  memorized answers and return the answer as String.
+The main objective of this package is receive a question as a String, compare with  memorized answer and return the answer as String.
 
 ---
 
 ## Usage:
 Install the NPM package:
 ```
-npm install get-answers
+npm install get-answer
 ```
 ---
-#### Custom Answers:
-You'll need a .json file to save your custom answers:
-This .json must start with an object { id:"sys", "answers": [] } and his "answers" can receive three Strings to customize default system answers:
-(to maintain default values just keep the a empty list in "answers")
+#### Custom answer:
+You'll need a .json file to save your custom answer:
+This .json must start with an object { id:"sys", "answer": [] } and his "answer" can receive three Strings to customize default system answer:
+(to maintain default values just keep the a empty list in "answer")
 ```javascript
 {
     "id": "sys", //Prefix used to allow the scripts read this file
-    "answers": [
+    "answer": [
     // 1° 'Answer not found' message 
         "answer not found", 
     // 2° 'In doubt between 2 or more items' message followed by an output list
-        "to many answers, check recognized questions:",
+        "to many answer, check recognized questions:",
     // 3° 'Known questions message' followed by an output list
-        "my answers:"
+        "my answer:"
     ]
 }
 ```
  
 #### IMPORTANT:
-- This .json file need to start with the object { id:"sys", "answers": [] }
+- This .json file need to start with the object { id:"sys", "answer": [] }
 
-- If the .json imported don't starts with the object { id:"sys", "answers": [] }, the scripts will use a default json with default answers
+- If the .json imported don't starts with the object { id:"sys", "answer": [] }, the scripts will use a default json with default answer
 
 
 ---
@@ -59,7 +59,7 @@ To help the script better distinguish the words entered by the user, you may rep
 [ 
     [
     "id": "sys", 
-    "answers": []
+    "answer": []
     ],
     []
         "id": "", // a unique string reference for the answer
@@ -72,11 +72,11 @@ To help the script better distinguish the words entered by the user, you may rep
                 "name" // you can add any keys on each keys lists
             ]
         ],
-        "questions": [ //presets used for compare when draw events between answers happens
+        "questions": [ //presets used for compare when draw events between answer happens
             "questionPreset001", //use how many questions presets you want
             "questionPreset002"
         ],
-        "answers": [ // will be our return, answers to be printed one by one.
+        "answer": [ // will be our return, answer to be printed one by one.
             "answer001",  //split answer msg or return a list with one position
             "answer002"
         ]
@@ -97,21 +97,21 @@ To help the script better distinguish the words entered by the user, you may rep
  
  
 ``` javascript
-import getAnswers from 'get-answers';
-import answers from 'answersjson'; 
+import getanswer from 'get-answer';
+import answer from 'answerjson'; 
 import words from 'words.json';  //optional
 
-console.log(getAnswers.get("Question here", answers, words);
+console.log(getanswer.get("Question here", answer, words);
 //Returns an array of strings min:1/max:any
 ```
 
 - #### Vanilla
 ```javascript
-const getAnswers = require('get-answers');
-const answers = "answers.json";
+const getanswer = require('get-answer');
+const answer = "answer.json";
 const words = "words.json";  //optional
 
-console.log(getAnswers.get("Question here", answers, words); 
+console.log(getanswer.get("Question here", answer, words); 
 //Returns an array of strings min:1/max:any
 ```
 
