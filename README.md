@@ -1,4 +1,4 @@
-# jschatbot-jschatbot-answer-me
+# jschatbot-answer-me
 A package to allow simple javascript bots answers questions.
 
 ---
