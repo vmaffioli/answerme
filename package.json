@@ -1,5 +1,5 @@
 {
-  "name": "get-answer",
+  "name": "answer-me",
   "version": "1.0.0",
   "description": "A package to allows simple javascript bots to answers questions.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vmaffioli/get-answers.git"
+    "url": "git+https://github.com/vmaffioli/answer-me.git"
   },
   "keywords": [
     "bot",
@@ -16,12 +16,13 @@
     "npm",
     "aswers",
     "questions",
-    "chat-bot"
+    "chat-bot",
+    "chat"
   ],
   "author": "vmaffioli <vinimaffioli@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vmaffioli/get-answers/issues"
+    "url": "https://github.com/vmaffioli/answer-me/issues"
   },
-  "homepage": "https://github.com/vmaffioli/get-answers/#readme"
+  "homepage": "https://github.com/vmaffioli/answer-me/#readme"
 }
