@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vmaffioli/answer-me.git"
+    "url": "git+https://github.com/vmaffioli/jschatbot-answer-me.git"
   },
   "keywords": [
     "bot",
@@ -22,7 +22,7 @@
   "author": "vmaffioli <vinimaffioli@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vmaffioli/answer-me/issues"
+    "url": "https://github.com/vmaffioli/jschatbot-answer-me/issues"
   },
-  "homepage": "https://github.com/vmaffioli/answer-me/#readme"
+  "homepage": "https://github.com/vmaffioli/jschatbot-answer-me/#readme"
 }
