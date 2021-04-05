@@ -1,4 +1,4 @@
-const defaultAnswers = require('./../default/defaultAnswers.json');
+const defaultAnswers = require('../default/answers.json');
 
 
 

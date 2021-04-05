@@ -1,6 +1,6 @@
 {
   "name": "get-answer",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "A package to allows simple javascript bots to answers questions.",
   "main": "index.js",
   "scripts": {

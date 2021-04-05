@@ -1,4 +1,4 @@
-const defaultAnswers = require("./../default/defaultAnswers.json");
+const defaultAnswers = require("./../default/answers.json");
 
 
 
@@ -23,16 +23,18 @@ function normalizeCustom(str) {
     }
     return str
 }
-function padronizeWords(userInput,sameWords) {     // girias ou variacoes 
-    userInput = userInput.toLowerCase()
+function padronizeWords(userInput,homonyms) {     // girias ou variacoes 
+    userInput = userInput.replace("?", "").toLowerCase()
+    for (let i = 1; i < homonyms.length; i++) { // i = 1 skip sys tag
+        let default_word = homonyms[i][0]
+        for (let ii = 0; ii < homonyms[i][1].length; ii++){
+            let words = homonyms[i][1][ii]
 
-    let sameWords_in = sameWords[1]
-    let sameWords_out = sameWords[2]
-
-    for (let i = 0; i < sameWords_in.length; i++) {
-        userInput = normalizeCustom(preventStutter(userInput).replace(preventStutter(sameWords_in[i]), preventStutter(sameWords_out[i])))
-    } //converte palavras com significados iguais aos memorizados
-
+            //console.log(homonyms[i][0])
+            //console.log(homonyms[i][1][ii])
+        userInput = normalizeCustom(preventStutter(userInput).replace(preventStutter(words), preventStutter(default_word)))
+        }
+    } //replace nos sinonimos
 
     return userInput //entrega com as palavras com significados iguais convertidas para palavra padrao
 }
@@ -113,9 +115,9 @@ function thinkingAboutKeys(array) { // filtra chaves reconhecidas pelo maior con
     return [moreLikely, memoryCache]
 }
 
-function analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, sameWords) { //dividido em parcial e final/ compara as palavras do input com as questoes memorizadas
+function analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, homonyms) { //dividido em parcial e final/ compara as palavras do input com as questoes memorizadas
     let partialAnalysis = [] //analise parcial
-    userInput = padronizeWords(userInput.toLowerCase(), sameWords)
+    userInput = padronizeWords(userInput.toLowerCase(), homonyms)
     //console.log(userInput)
     if (hmmIRemember[0] === "%%dontknow%%") { // converte o nao reconhecido em nao lembrado rs
         partialAnalysis.push(hmmIRemember)
@@ -293,16 +295,17 @@ function getAnswersById(id, memorizedAnswers) { // retorna respostas do json pel
 function compareWords(userInput, memorizedWord) { //compara palavras - so strings por enquanto
     let result = false
     if (userInput.includes(memorizedWord)) {
+        console.log(userInput)
+
         result = true
     }
     return result
 }
 
-exports.reply = (msg, memorizedAnswers, sameWords) => {
-    let userInput = msg.replace("?", "").toLowerCase();
+exports.reply = (msg, memorizedAnswers, homonyms) => {
     let recognizingSomething = []
 
-    userInput = padronizeWords(userInput, sameWords) // aplica padrao para palavras com msm significado
+    userInput = padronizeWords(msg, homonyms) // aplica padrao para palavras com msm significado
     let rememberCt = 0
     rememberQuestions(memorizedAnswers).forEach(memorizedQuestion => { //verifica se cada key existe no userInput
         let keys = memorizedQuestion.keys
@@ -320,8 +323,9 @@ exports.reply = (msg, memorizedAnswers, sameWords) => {
                             twoFactory_2 = true
                         } else if ((passedCounter === 1) && (compareWords(userInput, checkKeys[ii]))) {
                             twoFactory_1 = true
+
                         } else if (passedCounter > 1) {
-                            console.log("simple-answer-bot: Hey, estão me enviando chave a mais para analisar!! max: 2")
+                            console.log(" Hey, estão me enviando chave a mais para analisar!! max: 2")
                         }
                     }
                 } else {
@@ -330,7 +334,7 @@ exports.reply = (msg, memorizedAnswers, sameWords) => {
                     } else if ((passedCounter === 1) && (compareWords(userInput, keys[i]))) {
                         twoFactory_1 = true
                     } else if (passedCounter > 1) { //precisa vir uma lista de keys com 2 posicoes - a regra é clara!
-                        console.log("simple-answer-bot: Receiving an invalid keys list!")
+                        console.log(" Receiving an invalid keys list!")
                     }
                 }
 
@@ -341,7 +345,7 @@ exports.reply = (msg, memorizedAnswers, sameWords) => {
             }
         } else {//precisa vir uma lista de keys com 2 posicoes  - a regra é clara!
             if (rememberCt > 0) {
-                console.log("simple-answer-bot: Receiving an invalid keys list!")
+                console.log(" Receiving an invalid keys list!")
                 //recognizingSomething.push(memorizedQuestion.id)
             }
 
@@ -354,7 +358,7 @@ exports.reply = (msg, memorizedAnswers, sameWords) => {
 
 
     //envia a resposta ja validada pelo analyzeQuestion
-    return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, sameWords), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
+    return getAnswersById(analyzeQuestion(hmmIRemember, userInput, memorizedAnswers, homonyms), memorizedAnswers) //gambiarra para armazenar perguntas desconhecidas --arrumar depois
 }
 
 

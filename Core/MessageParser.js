@@ -1,6 +1,5 @@
-
 const analyzeInput = require('./brain.js');
-const actionProvider = require('./ActionProvider.js');
+const actionProvider = require('./actionProvider.js');
 
 exports.message = function(msg, memorizedAnswers, sameWords) {
 

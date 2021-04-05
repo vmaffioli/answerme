@@ -1,0 +1,98 @@
+[
+    {
+        "id": "sys", 
+        "answers": [
+            "answer not found",
+            "to many answers, check recognized questions:",
+            "my answers:"
+        ]
+    },
+    {
+        "id": "answersList",
+        "desc": "Questions I know how to answer",
+        "keys": [
+            [
+                "what",
+                "you",
+                "know",
+                "can"
+            ],
+            [
+                "question",
+                "answer"
+            ]
+        ],
+        "questions": [
+            "what can you answer?",
+            "what do you know how to answer?",
+            "what answers do you know",
+            "what questions can you answer?",
+            "what questions do you know?"
+
+        ],
+        "answers": [
+            "%%all%%"
+        ]
+    },
+    {
+        "id": "syshelp",
+        "desc": "Instructions",
+        "keys": [
+            [
+                "sys000"
+            ],
+            [
+                "help000"
+            ]
+        ],
+        "questions": [
+            "sys000 help000"
+
+        ],
+        "answers": [
+            "-----------------------------------------------------------------------------------------",
+            "Input (three parameters):",
+            " - string containing your question,",
+            " - .json containing memorized questions and answers",
+            " - .json containing synonyms (optional)",
+            "-----------------------------------------------------------------------------------------",
+            "import answer from 'answer-me'",
+            "import myAnswers from 'myAnswers.json", 
+            "import synonyms from 'synonyms.json",
+            "console.log(answer.me('your question here'), myAnswers, synonyms)",
+            "-----------------------------------------------------------------------------------------",
+            "const answer = require('answer-me')",
+            "const myAnswers = require('myAnswers.json')",
+            "const synonyms = require('synonyms.json')",
+            "console.log(answer.me('your question here'), myAnswers, synonyms)",
+            "-----------------------------------------------------------------------------------------",
+            "For more information visit:",
+            "https://github.com/vmaffioli/answer-me/blob/main/README.md",
+            "-----------------------------------------------------------------------------------------"
+
+        ]
+    },
+    {
+        "id": "sysAbout",
+        "desc": "About answer-me",
+        "keys": [
+            [
+                "sys000"
+            ],
+            [
+                "about 000"
+            ]
+        ],
+        "questions": [
+            "sys000 about000"
+        ],
+        "answers": [
+            "-----------------------------------------------------------------------------------------",
+            "Author: Vinícius Maffioli",
+            "-----------------------------------------------------------------------------------------",
+            "GitHub: https://github.com/vmaffioli",
+            "-----------------------------------------------------------------------------------------"
+        ]
+    }
+   
+]

@@ -1,29 +1,27 @@
-const parse = require('./core/MessageParser.js');
-const defaultSameWords = require("./default/sameWords.json");
-const defaultAnswers = require('./default/defaultAnswers.json');
+const parse = require('./core/messageParser.js');
+const homonyms = require("./default/homonyms.json");
+const defaultAnswers = require('./default/answers.json');
 
 
-exports.get = function (userInput, memorizedAnswersFromUser, sameWords) {
+exports.me = function (userInput, memorizedAnswersFromUser, sameWords) {
     let result;
 
-
     if (sameWords === undefined) {
-        sameWords = defaultSameWords
+        sameWords = homonyms
     } else {
         if (Array.isArray(sameWords)) {
             if(sameWords[0] ==="sys"){
                 if (sameWords.length === 2) {
-                    sameWords = defaultSameWords
+                    sameWords = homonyms
                 } 
             } else {
-                sameWords = defaultSameWords
+                sameWords = homonyms
             }
         } else {
-            sameWords = defaultSameWords
+            sameWords = homonyms
         }
     }
     let sum = []
-
     if ((memorizedAnswersFromUser === undefined) || (memorizedAnswersFromUser.length === 0)) {
         result = parse.message(userInput, defaultAnswers, sameWords);
     } else {
