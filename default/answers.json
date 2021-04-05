@@ -56,25 +56,25 @@
             " - .json containing memorized questions and answers",
             " - .json containing synonyms (optional)",
             "-----------------------------------------------------------------------------------------",
-            "import answer from 'answer-me'",
+            "import answer from 'jschatbot-answer-me'",
             "import myAnswers from 'myAnswers.json", 
             "import synonyms from 'synonyms.json",
             "console.log(answer.me('your question here'), myAnswers, synonyms)",
             "-----------------------------------------------------------------------------------------",
-            "const answer = require('answer-me')",
+            "const answer = require('jschatbot-answer-me')",
             "const myAnswers = require('myAnswers.json')",
             "const synonyms = require('synonyms.json')",
             "console.log(answer.me('your question here'), myAnswers, synonyms)",
             "-----------------------------------------------------------------------------------------",
             "For more information visit:",
-            "https://github.com/vmaffioli/answer-me/blob/main/README.md",
+            "https://github.com/vmaffioli/jschatbot-answer-me/blob/main/README.md",
             "-----------------------------------------------------------------------------------------"
 
         ]
     },
     {
         "id": "sysAbout",
-        "desc": "About answer-me",
+        "desc": "About jschatbot-answer-me",
         "keys": [
             [
                 "sys000"

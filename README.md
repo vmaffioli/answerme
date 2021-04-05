@@ -1,11 +1,11 @@
-# ANSWER-ME
+# jschatbot-jschatbot-answer-me
 A package to allow simple javascript bots answers questions.
 
 ---
 
 ## Readme
 
-get-answers was born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
+jschatbot-jschatbot-answer-me born from my <a href="https://viniciusmaffioli.herokuapp.com"> WebProfile Interview ChatBot</a>
 
 The main objective of this package is receive a question as a String, compare with  memorized answers and return the answer as String.
 
@@ -16,13 +16,13 @@ Firt the script will search for two memorized keys in user's input, if if he fin
 ## Usage:
 Install the NPM package:
 ```
-npm install answer-me
+npm install jschatbot-answer-me
 ```
 
 #### In code:
 
 ```javascript
-import answer from "answer-me"
+import answer from "jschatbot-answer-me"
 import myAnswers from "myAnswers.json"
 import synonyms from "synonyms.json"
 
@@ -128,7 +128,7 @@ To help the script better distinguish the words entered by the user, you may rep
  
  
 ``` javascript
-import answer from "answer-me"
+import answer from "jschatbot-answer-me"
 import myAnswers from "myAnswers.json"
 import synonyms from "synonyms.json"  //optional
 
@@ -138,7 +138,7 @@ console.log(answer.me("Question here", myAnswers, synonyms);
 
 - #### Vanilla
 ```javascript
-const answer = require('answer-me');
+const answer = require('jschatbot-answer-me');
 const myAnswers = "myAnswers.json";
 const synonyms = "synonym.json";  //optional
 
