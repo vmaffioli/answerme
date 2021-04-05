@@ -1,6 +1,6 @@
 {
   "name": "jschatbot-answer-me",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package to allows simple javascript bots to answers questions.",
   "main": "index.js",
   "scripts": {

@@ -295,8 +295,6 @@ function getAnswersById(id, memorizedAnswers) { // retorna respostas do json pel
 function compareWords(userInput, memorizedWord) { //compara palavras - so strings por enquanto
     let result = false
     if (userInput.includes(memorizedWord)) {
-        console.log(userInput)
-
         result = true
     }
     return result
