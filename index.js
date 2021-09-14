@@ -7,18 +7,18 @@ exports.me = function (userInput, memorizedAnswersFromUser, sameWords) {
     let result;
 
     if (sameWords === undefined) {
-        sameWords = homonyms
+        sameWords = synomyn
     } else {
         if (Array.isArray(sameWords)) {
             if(sameWords[0] ==="sys"){
                 if (sameWords.length === 2) {
-                    sameWords = homonyms
+                    sameWords = synomyn
                 } 
             } else {
-                sameWords = homonyms
+                sameWords = synomyn
             }
         } else {
-            sameWords = homonyms
+            sameWords = synomyn
         }
     }
     let sum = []
